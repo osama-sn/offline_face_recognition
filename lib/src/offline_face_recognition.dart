@@ -130,6 +130,37 @@ class OfflineFaceRecognition {
     return recognizeImage(image);
   }
 
+  Future<List<RecognitionResult>> recognizeMultiple({
+    required File image,
+    int? limit,
+  }) async {
+    final faces = await _detector.detectFromFile(image);
+    if (faces.isEmpty) {
+      throw const FaceDetectionException(
+        'No face was detected in the image.',
+      );
+    }
+
+    final decoded = await _decodeImage(image);
+    final limitToUse = limit ?? _config.maxFacesToRecognize;
+    final facesToProcess = faces.take(limitToUse).toList();
+    final templates = await _store.findAll();
+    final results = <RecognitionResult>[];
+
+    for (final face in facesToProcess) {
+      final croppedFace = _crop(decoded, face.boundingBox);
+      final embedding = await _extractor.extract(croppedFace);
+      final result = _matcher.findBestMatch(
+        embedding: embedding,
+        templates: templates,
+        config: _config,
+      );
+      results.add(result.copyWith(face: face));
+    }
+
+    return results;
+  }
+
   Future<RecognitionResult> recognizeFaceImage(
     image.Image faceImage, {
     DetectedFace? face,

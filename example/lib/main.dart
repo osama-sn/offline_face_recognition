@@ -476,23 +476,10 @@ class _LiveFaceRecognitionPageState extends State<LiveFaceRecognitionPage>
         _staticImageHeight = decoded.height;
       });
 
-      final inputImage = InputImage.fromFile(imageFile);
-      final faces = await _faceDetector.processImage(inputImage);
-      if (faces.isEmpty) {
-        throw const FaceDetectionException('No face was detected in the image.');
-      }
-
-      final facesToProcess = faces.take(_maxFacesLimit).toList();
-      final results = <RecognitionResult>[];
-
-      for (final face in facesToProcess) {
-        final croppedFace = _cropFace(decoded, face.boundingBox);
-        final result = await widget.faceRecognition.recognizeFaceImage(
-          croppedFace,
-          face: DetectedFace(boundingBox: face.boundingBox),
-        );
-        results.add(result);
-      }
+      final results = await widget.faceRecognition.recognizeMultiple(
+        image: imageFile,
+        limit: _maxFacesLimit,
+      );
 
       setState(() {
         _staticResults = results;

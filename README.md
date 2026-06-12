@@ -132,10 +132,19 @@ await faceRecognition.register(
 );
 ```
 
-### Recognize
+### Recognize (Single Face)
 
 ```dart
 final result = await faceRecognition.recognize(image: file);
+```
+
+### Recognize Multiple Faces
+
+```dart
+final results = await faceRecognition.recognizeMultiple(
+  image: file,
+  limit: 3, // Optional limit (defaults to config.maxFacesToRecognize)
+);
 ```
 
 ### List templates
@@ -181,6 +190,7 @@ final faceRecognition = await OfflineFaceRecognition.create(
     inputHeight: 112,
     embeddingSize: 192,
     numThreads: 2,
+    maxFacesToRecognize: 3, // Default maximum faces to recognize simultaneously
   ),
 );
 ```

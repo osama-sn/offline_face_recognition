@@ -8,6 +8,7 @@ class FaceRecognitionConfig {
     this.matchThreshold = 0.75,
     this.numThreads,
     this.allowMultipleFacesOnRegistration = false,
+    this.maxFacesToRecognize = 3,
   });
 
   final String modelAssetPath;
@@ -17,4 +18,5 @@ class FaceRecognitionConfig {
   final double matchThreshold;
   final int? numThreads;
   final bool allowMultipleFacesOnRegistration;
+  final int maxFacesToRecognize;
 }
