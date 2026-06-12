@@ -7,11 +7,13 @@ This package runs fully on-device with no backend required.
 ## Features
 
 - Face detection with Google ML Kit
-- Face registration from image files or camera capture
+- Face registration from image files or camera capture with **Custom Greeting Messages**
 - TensorFlow Lite embedding extraction
 - Local storage for face templates
 - Offline recognition with Euclidean matching
-- Live camera stream recognition
+- **Flexible Recognition Modes**: Switch between real-time **Live Stream** and static **Attach Image** (from gallery or camera capture)
+- **Multi-Face Recognition**: Detect and recognize multiple faces simultaneously up to a user-defined limit
+- Visual feedback with colored bounding boxes and name labels overlaid directly on detected faces
 - Extensible architecture with replaceable storage and matcher layers
 
 ## Platform Support
@@ -191,12 +193,14 @@ If you want to use a custom model, replace the asset path in `FaceRecognitionCon
 
 ## Example App
 
-The `example` app includes:
+The `example` app showcases:
 
-- Live face recognition from the camera stream
-- Register face from camera or gallery
-- Persistent local storage of saved faces
-- Real-time recognition status UI
+- **Live stream mode**: Real-time face recognition from the camera.
+- **Attach image mode**: Process static images captured via camera or loaded from the gallery.
+- **Custom Greetings**: Set a greeting or custom text when registering a face; it displays when recognized.
+- **Configurable Multi-Face Limit**: Adjust the limit (1 to 5) of faces to recognize simultaneously.
+- **Interactive Painter Overlay**: Renders green (match) or red (no match) bounding boxes around detected faces, complete with name and confidence level text labels.
+- Persistent local storage of registered templates.
 
 Run it with:
 
