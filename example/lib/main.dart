@@ -808,32 +808,37 @@ class _LiveFaceRecognitionPageState extends State<LiveFaceRecognitionPage>
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(5, (index) {
-                final limitValue = index + 1;
-                final isSelected = _maxFacesLimit == limitValue;
-                return ChoiceChip(
-                  label: Text('$limitValue'),
-                  selected: isSelected,
-                  onSelected: (selected) {
-                    if (selected) {
-                      setState(() {
-                        _maxFacesLimit = limitValue;
-                      });
-                      if (_currentMode == RecognitionMode.staticImage && _selectedImage != null) {
-                        _processStaticImage(_selectedImage!);
-                      }
-                    }
-                  },
-                  selectedColor: Colors.greenAccent.withValues(alpha: 0.25),
-                  checkmarkColor: Colors.greenAccent,
-                  labelStyle: TextStyle(
-                    color: isSelected ? Colors.greenAccent : Colors.white60,
-                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                  ),
-                );
-              }),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(5, (index) {
+                  final limitValue = index + 1;
+                  final isSelected = _maxFacesLimit == limitValue;
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 6),
+                    child: ChoiceChip(
+                      label: Text('$limitValue'),
+                      selected: isSelected,
+                      onSelected: (selected) {
+                        if (selected) {
+                          setState(() {
+                            _maxFacesLimit = limitValue;
+                          });
+                          if (_currentMode == RecognitionMode.staticImage && _selectedImage != null) {
+                            _processStaticImage(_selectedImage!);
+                          }
+                        }
+                      },
+                      selectedColor: Colors.greenAccent.withValues(alpha: 0.25),
+                      checkmarkColor: Colors.greenAccent,
+                      labelStyle: TextStyle(
+                        color: isSelected ? Colors.greenAccent : Colors.white60,
+                        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      ),
+                    ),
+                  );
+                }),
+              ),
             ),
           ),
         ],
