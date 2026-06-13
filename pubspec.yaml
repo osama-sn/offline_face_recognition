@@ -1,9 +1,19 @@
 name: offline_face_recognition
-description: Offline Flutter face detection, registration, embedding extraction, and recognition powered by TensorFlow Lite.
+
+description: Offline face recognition for Flutter using Google ML Kit for face detection and TensorFlow Lite for embedding extraction and matching.
+
 version: 0.1.0
+
 homepage: https://github.com/osama-sn/offline_face_recognition
 repository: https://github.com/osama-sn/offline_face_recognition
 issue_tracker: https://github.com/osama-sn/offline_face_recognition/issues
+
+topics:
+  - face-recognition
+  - face-detection
+  - tensorflow-lite
+  - biometric-authentication
+  - machine-learning
 
 environment:
   sdk: ">=3.5.0 <4.0.0"
@@ -28,3 +38,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/mobile_face_net.tflite
+
+screenshots:
+  - description: Live face recognition example
+    path: screenshots/demo.jpeg
