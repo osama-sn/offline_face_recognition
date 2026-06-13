@@ -16,6 +16,12 @@ This package runs fully on-device with no backend required.
 - Visual feedback with colored bounding boxes and name labels overlaid directly on detected faces
 - Extensible architecture with replaceable storage and matcher layers
 
+## Screenshot
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/osama-sn/offline_face_recognition/main/screenshots/demo.jpeg" alt="Face Recognition Demo" width="300"/>
+</p>
+
 ## Platform Support
 
 Currently tested for:
